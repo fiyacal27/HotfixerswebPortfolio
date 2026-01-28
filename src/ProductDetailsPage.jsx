@@ -145,7 +145,7 @@ const ProductDetailsPage = () => {
                 onClick={() => navigate('/configure', { state: { selectedPkgId: productId } })}
                 className={`px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-xl transition-all hover:-translate-y-1 flex items-center gap-2 ${product.buttonGradient}`}
               >
-                Configure Now <ArrowRight size={18} />
+              Build Now <ArrowRight size={18} />
               </button>
             </div>
           </div>
@@ -207,7 +207,7 @@ const ProductDetailsPage = () => {
                 onClick={() => navigate('/configure', { state: { selectedPkgId: productId } })}
                 className={`w-full py-3 rounded-xl text-white font-medium transition-all flex items-center justify-center gap-2 ${product.buttonGradient}`}
               >
-                Proceed to Configuration <ArrowRight size={16} />
+                Proceed to Build <ArrowRight size={16} />
               </button>
             </div>
 

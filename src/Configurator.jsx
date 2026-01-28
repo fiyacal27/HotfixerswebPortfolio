@@ -52,13 +52,13 @@ export default function PackageBuilder() {
     return (
       <div
         onClick={() => toggleAddon(item.id)}
-        className={`group flex items-center justify-between p-5 rounded-xl border-2 cursor-pointer transition-all mb-4 ${
+        className={`group flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all mb-3 ${
           isAdded 
           ? 'bg-emerald-500/10 border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.1)]' 
           : 'bg-[#12121a] border-white/5 hover:border-white/20'
         }`}
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
           <div className={`p-3 rounded-lg transition-colors ${isAdded ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-500'}`}>
             <item.icon size={24} />
           </div>
@@ -106,14 +106,14 @@ export default function PackageBuilder() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         {/* LEFT COLUMN - Improved Structure & Alignment */}
-        <div className="lg:col-span-8 space-y-20">
+        <div className="lg:col-span-8 space-y-12">
           
           {/* SECTION 1 */}
           <section>
-            <div className="mb-10">
+            <div className="mb-6">
               <div className="flex items-center gap-3 mb-2">
                 <span className="bg-indigo-500 text-white text-xs font-black px-2 py-0.5 rounded">STEP 01</span>
                 <h2 className="text-3xl font-black text-white uppercase tracking-tight">Select Foundation</h2>
@@ -126,7 +126,7 @@ export default function PackageBuilder() {
                 <div
                   key={pkg.id}
                   onClick={() => setSelectedPkgId(pkg.id)}
-                  className={`relative cursor-pointer p-7 rounded-2xl border-2 transition-all duration-300 flex flex-col justify-between h-full ${
+                  className={`relative cursor-pointer p-5 rounded-2xl border-2 transition-all duration-300 flex flex-col justify-between h-full ${
                     selectedPkgId === pkg.id 
                     ? 'bg-indigo-500/10 border-indigo-500 shadow-[0_0_25px_rgba(99,102,241,0.15)] ring-1 ring-indigo-400/50' 
                     : 'bg-[#12121a] border-white/5 hover:border-white/10'
@@ -134,7 +134,7 @@ export default function PackageBuilder() {
                 >
                   <div>
                     <h3 className={`text-xl font-bold mb-3 ${selectedPkgId === pkg.id ? 'text-white' : 'text-slate-300'}`}>{pkg.title}</h3>
-                    <p className="text-sm text-slate-500 leading-relaxed mb-8">{pkg.description}</p>
+                    <p className="text-sm text-slate-500 leading-relaxed mb-4">{pkg.description}</p>
                   </div>
                   <div className={`text-xl font-mono font-black ${selectedPkgId === pkg.id ? 'text-indigo-400' : 'text-slate-400'}`}>
                     {formatPrice(pkg.basePrice)}
@@ -151,7 +151,7 @@ export default function PackageBuilder() {
 
           {/* SECTION 2 */}
           <section>
-            <div className="mb-10">
+            <div className="mb-6">
               <div className="flex items-center gap-3 mb-2">
                 <span className="bg-indigo-500 text-white text-xs font-black px-2 py-0.5 rounded">STEP 02</span>
                 <h2 className="text-3xl font-black text-white uppercase tracking-tight">Visual & Identity</h2>
@@ -165,7 +165,7 @@ export default function PackageBuilder() {
 
           {/* SECTION 3 */}
           <section>
-            <div className="mb-10">
+            <div className="mb-6">
               <div className="flex items-center gap-3 mb-2">
                 <span className="bg-indigo-500 text-white text-xs font-black px-2 py-0.5 rounded">STEP 03</span>
                 <h2 className="text-3xl font-black text-white uppercase tracking-tight">Performance & Security</h2>
@@ -302,7 +302,7 @@ export default function PackageBuilder() {
                 </div>
                 <button 
                   onClick={() => { setIsReceiptOpen(false); setIsSubmitted(false); }} 
-                  className="w-full py-4 bg-white text-black text-xs font-black uppercase tracking-[0.2em] rounded-xl hover:bg-slate-200 transition-colors shadow-xl shadow-white/5"
+                  className="w-full py-4 bg-white/5 hover:bg-white/10 border-2 border-white/10 hover:border-white/30 text-white text-xs font-black uppercase tracking-[0.2em] rounded-xl transition-all"
                 >
                   Close
                 </button>
