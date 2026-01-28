@@ -23,7 +23,7 @@ const productData = {
     price: "₱8,000 – ₱15,000",
     description: "The perfect launchpad for small businesses, cafes, and service providers. We build a professional digital presence that establishes trust and converts visitors into leads.",
     badge: "Best Value",
-    theme: "emerald", // Used for shadow/glow colors
+    theme: "emerald", 
     targetAudience: "Freelancers, Local Cafes, Consultants, Small Clinics",
     heroGradient: "from-emerald-500/20 via-emerald-900/10 to-transparent",
     accentColor: "text-emerald-400",
@@ -79,25 +79,31 @@ const ProductDetailsPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams(); 
   
-  // Logic: Get the product data based on the URL parameter, default to 'brand-starter' if not found
   const product = productData[productId] || productData["brand-starter"];
 
-  // Scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [productId]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-slate-200 font-sans selection:bg-indigo-500/30">
+    <div className="relative min-h-screen bg-[#020205] text-slate-200 font-sans selection:bg-indigo-500/30 overflow-x-hidden">
       
+      {/* --- DYNAMIC BACKGROUND ASSETS --- */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full bg-indigo-600/20 blur-[80px] animate-pulse"></div>
+          <div className="absolute top-[10%] -right-[5%] w-[45%] h-[45%] rounded-full bg-emerald-500/10 blur-[80px] animate-bounce" style={{ animationDuration: '6s' }}></div>
+          <div className="absolute bottom-[10%] left-[10%] w-[40%] h-[40%] rounded-full bg-purple-600/10 blur-[100px] animate-pulse"></div>
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+      </div>
+
       {/* --- HEADER --- */}
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-md">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-indigo-500/10 border border-indigo-500/20 rounded-lg backdrop-blur-md">
               <Code size={20} className="text-indigo-400" />
             </div>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r font-bold text-xl from-white to-slate-400">
+            <span className="font-bold text-lg tracking-tight">
               Hotfixers <span className={`font-normal text-sm ${product.accentColor}`}>/ {product.title}</span>
             </span>
           </div>
@@ -107,11 +113,11 @@ const ProductDetailsPage = () => {
         </div>
       </header>
 
-      <main className="relative">
+      <main className="relative z-10">
         
         {/* --- HERO SECTION --- */}
-        <section className={`relative pt-20 pb-32 px-6 overflow-hidden`}>
-          {/* Ambient Background Glow */}
+        <section className={`relative pt-32 pb-32 px-6 overflow-hidden`}>
+          {/* Ambient Background Glow (Dynamic based on product theme) */}
           <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-gradient-to-b ${product.heroGradient} blur-[120px] -z-10`} />
 
           <div className="max-w-5xl mx-auto text-center space-y-8">
@@ -136,8 +142,8 @@ const ProductDetailsPage = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button 
-                onClick={() => navigate('/configure')}
-                className={`px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-xl shadow-${product.theme}-900/20 transition-all hover:-translate-y-1 flex items-center gap-2 ${product.buttonGradient}`}
+                onClick={() => navigate('/configure', { state: { selectedPkgId: productId } })}
+                className={`px-8 py-4 rounded-xl text-white font-semibold text-lg shadow-xl transition-all hover:-translate-y-1 flex items-center gap-2 ${product.buttonGradient}`}
               >
                 Configure Now <ArrowRight size={18} />
               </button>
@@ -146,7 +152,7 @@ const ProductDetailsPage = () => {
         </section>
 
         {/* --- WHO IS THIS FOR? --- */}
-        <section className="py-12 border-y border-white/5 bg-white/[0.02]">
+        <section className="py-12 border-y border-white/5 bg-white/[0.02] backdrop-blur-sm">
           <div className="max-w-5xl mx-auto px-6 text-center">
              <h3 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-4">Perfect Architecture For</h3>
              <p className="text-xl md:text-2xl text-slate-200 font-light">
@@ -165,9 +171,8 @@ const ProductDetailsPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {product.features.map((feature, idx) => (
-                <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors group">
+                <div key={idx} className="p-6 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors group backdrop-blur-md">
                   <div className={`w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center mb-4 ${product.accentColor} group-hover:scale-110 transition-transform`}>
-                    {/* Cloning icon to ensure correct sizing */}
                     {React.cloneElement(feature.icon, { size: 24 })}
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
@@ -182,8 +187,7 @@ const ProductDetailsPage = () => {
 
         {/* --- SPECS LIST & CALL TO ACTION --- */}
         <section className="py-20 px-6">
-          <div className="max-w-4xl mx-auto bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
-             {/* Decorative glow inside card */}
+          <div className="max-w-4xl mx-auto bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden backdrop-blur-md">
             <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${product.heroGradient.replace('to-transparent', 'to-slate-900')}`} />
             
             <h2 className="text-2xl font-bold text-white mb-8">Detailed Specifications</h2>
@@ -197,10 +201,10 @@ const ProductDetailsPage = () => {
               ))}
             </div>
 
-            <div className="p-6 bg-[#0a0a0f] rounded-2xl border border-white/5 inline-block w-full max-w-md">
+            <div className="p-6 bg-[#0a0a0f]/60 rounded-2xl border border-white/5 inline-block w-full max-w-md backdrop-blur-md">
               <p className="text-slate-400 text-sm mb-4">Ready to start your project?</p>
               <button 
-                onClick={() => navigate('/configure')}
+                onClick={() => navigate('/configure', { state: { selectedPkgId: productId } })}
                 className={`w-full py-3 rounded-xl text-white font-medium transition-all flex items-center justify-center gap-2 ${product.buttonGradient}`}
               >
                 Proceed to Configuration <ArrowRight size={16} />
@@ -211,7 +215,7 @@ const ProductDetailsPage = () => {
         </section>
       </main>
 
-      <footer className="py-8 text-center text-slate-600 text-sm border-t border-white/5">
+      <footer className="relative z-10 py-12 text-center text-slate-600 text-sm border-t border-white/5 bg-black/40 backdrop-blur-md">
         <p>© 2026 Hotfixers. Building the future.</p>
       </footer>
     </div>
