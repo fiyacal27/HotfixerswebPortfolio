@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import HotfixersLogo from './assets/HotfixersLogo.png';
 import { 
   Check, Plus, Server, Shield, Search, 
   Layout, ArrowRight, Zap, Palette, X, ReceiptText, 
@@ -83,30 +84,30 @@ export default function PackageBuilder() {
     <div className="min-h-screen bg-[#050508] text-slate-200 font-sans pb-24 selection:bg-indigo-500/30">
       
       {/* HEADER (Unchanged as requested) */}
-      <header className="sticky top-0 z-40 border-b border-white/5 bg-[#0a0a0f]/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-2xl">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <div className="p-1.5 bg-indigo-500/10 border border-indigo-400/20 rounded-lg">
                             <img 
-                                src="src/assets/HotfixersLogo.png" 
+                                src={HotfixersLogo} 
                                 alt="Hotfixers Logo" 
                                 className="w-6 h-6 object-contain" 
                             />
                         </div>
-            <span className="font-bold text-xl tracking-tight">
+            <span className="font-bold text-lg tracking-tight">
               Hotfixers <span className="text-slate-500 font-normal px-2">/</span> <span className="text-indigo-400">Build Package</span>
             </span>
           </div>
           <button 
             onClick={() => navigate('/')} 
-            className="hidden md:block px-6 py-2.5 text-base font-medium bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors"
+            className="hidden md:block px-6 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all active:scale-95"
           >
             Back to Home
           </button>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div className="max-w-7xl mx-auto px-6 pt-28 pb-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
         
         {/* LEFT COLUMN - Improved Structure & Alignment */}
         <div className="lg:col-span-8 space-y-12">

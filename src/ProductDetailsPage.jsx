@@ -100,7 +100,7 @@ const ProductDetailsPage = () => {
       {/* --- HEADER --- */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-black/60 backdrop-blur-2xl">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <div className="p-1.5 bg-indigo-500/10 border border-indigo-400/20 rounded-lg">
               <img 
                                 src={HotfixersLogo} 
@@ -112,7 +112,7 @@ const ProductDetailsPage = () => {
               Hotfixers <span className={`font-normal text-sm ${product.accentColor}`}>/ {product.title}</span>
             </span>
           </div>
-          <button onClick={() => navigate('/')} className="hidden md:block px-5 py-2 text-sm font-medium bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-colors backdrop-blur-sm cursor-pointer">
+          <button onClick={() => navigate('/')} className="hidden md:block px-6 py-2 text-sm font-semibold bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all active:scale-95 backdrop-blur-sm cursor-pointer">
             Back to Home
           </button>
         </div>
@@ -207,7 +207,7 @@ const ProductDetailsPage = () => {
             </div>
 
             <div className="p-6 bg-[#0a0a0f]/60 rounded-2xl border border-white/5 inline-block w-full max-w-md backdrop-blur-md">
-              <p className="text-slate-400 text-sm mb-4">Ready to start your project?</p>
+              <p className="text-slate-400 text-sm mb-4">Ready to start your website?</p>
               <button 
                 onClick={() => navigate('/configure', { state: { selectedPkgId: productId } })}
                 className={`w-full py-3 rounded-xl text-white font-medium transition-all flex items-center justify-center gap-2 ${product.buttonGradient}`}
